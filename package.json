@@ -19,10 +19,12 @@
     "appId": "com.dartagnan.pos",
     "productName": "D' Artagnan POS",
     "mac": {
-      "category": "public.app-category.business"
+      "category": "public.app-category.business",
+      "icon": "build/icon.icns"
     },
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "icon": "build/icon.png"
     }
   }
 }
