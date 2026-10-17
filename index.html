@@ -191,7 +191,7 @@
                         <input type="file" id="file-import" accept=".xlsx, .xls, .csv" style="display: none;">
                         <button class="btn-secondary" id="btn-import-excel" style="background-color: transparent;"><i class="fa-solid fa-file-import"></i> Importar</button>
                         <button class="btn-primary" id="btn-export-excel" style="background-color: var(--success);"><i class="fa-solid fa-file-excel"></i> Exportar a Excel</button>
-                        <button class="btn-primary"><i class="fa-solid fa-plus"></i> Nuevo Producto</button>
+                        <button class="btn-primary" id="btn-open-new-product"><i class="fa-solid fa-plus"></i> Nuevo Producto</button>
                     </div>
                 </header>
                 <div class="content-card table-container">
@@ -376,6 +376,81 @@
                 <button id="confirm-checkout-btn" class="btn-primary" disabled><i class="fa-solid fa-check"></i> Confirmar Pago</button>
                 <button id="cancel-checkout-btn" class="btn-secondary">Cancelar</button>
             </div>
+        </div>
+    </div>
+
+    <!-- New Product Modal -->
+    <div id="new-product-modal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 540px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h3 style="margin: 0; font-size: 1.5rem; display: flex; align-items: center; gap: 0.6rem;">
+                    <i class="fa-solid fa-box-open" style="color: var(--primary-color);"></i> Nuevo Producto
+                </h3>
+                <button type="button" id="btn-close-new-product" style="background: none; border: none; color: var(--text-muted); font-size: 1.4rem; cursor: pointer; padding: 0.2rem 0.5rem;" title="Cerrar">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <form id="new-product-form">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="input-group" style="margin: 0;">
+                        <label for="new-prod-id">Código / Barcode <span style="color: var(--danger);">*</span></label>
+                        <input type="text" id="new-prod-id" class="form-control" placeholder="Ej. 750109" required autocomplete="off">
+                    </div>
+                    <div class="input-group" style="margin: 0;">
+                        <label for="new-prod-category">Categoría</label>
+                        <input type="text" id="new-prod-category" class="form-control" placeholder="Ej. Bebidas, Botanas..." list="categories-list">
+                        <datalist id="categories-list">
+                            <option value="Bebidas">
+                            <option value="Botanas">
+                            <option value="Lácteos">
+                            <option value="Panadería">
+                            <option value="Abarrotes">
+                            <option value="Frutas">
+                            <option value="General">
+                        </datalist>
+                    </div>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 1rem;">
+                    <label for="new-prod-name">Nombre del Producto <span style="color: var(--danger);">*</span></label>
+                    <input type="text" id="new-prod-name" class="form-control" placeholder="Ej. Galletas Chokis 150g" required autocomplete="off">
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div class="input-group" style="margin: 0;">
+                        <label for="new-prod-stock">Stock Inicial <span style="color: var(--danger);">*</span></label>
+                        <input type="number" id="new-prod-stock" class="form-control" min="0" step="1" value="10" required>
+                    </div>
+                    <div class="input-group" style="margin: 0;">
+                        <label for="new-prod-purchase">P. Compra ($)</label>
+                        <input type="number" id="new-prod-purchase" class="form-control" min="0" step="0.01" placeholder="0.00" value="0.00">
+                    </div>
+                    <div class="input-group" style="margin: 0;">
+                        <label for="new-prod-sale">P. Venta ($) <span style="color: var(--danger);">*</span></label>
+                        <input type="number" id="new-prod-sale" class="form-control" min="0" step="0.01" placeholder="0.00" required>
+                    </div>
+                </div>
+
+                <div class="input-group" style="margin-bottom: 1.5rem;">
+                    <label for="new-prod-icon">Ícono Representativo</label>
+                    <select id="new-prod-icon" class="form-control" style="background: var(--bg-dark); color: white;">
+                        <option value="fa-box" selected>📦 General (Caja)</option>
+                        <option value="fa-bottle-water">🥤 Bebida</option>
+                        <option value="fa-glass-water">🥛 Vaso / Lácteo</option>
+                        <option value="fa-bread-slice">🍞 Panadería</option>
+                        <option value="fa-cookie">🍪 Galleta / Botana</option>
+                        <option value="fa-cheese">🧀 Queso</option>
+                        <option value="fa-apple-whole">🍎 Fruta / Verdura</option>
+                        <option value="fa-egg">🥚 Huevos</option>
+                        <option value="fa-tag">🏷️ Etiqueta</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions" style="margin-top: 1rem;">
+                    <button type="submit" id="btn-save-new-product" class="btn-primary"><i class="fa-solid fa-check"></i> Guardar Producto</button>
+                    <button type="button" id="btn-cancel-new-product" class="btn-secondary">Cancelar</button>
+                </div>
+            </form>
         </div>
     </div>
 
